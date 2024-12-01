@@ -10,4 +10,9 @@ class Controller {
     fun dayOneTaskOne(): String {
         return Day1.taskOne()
     }
+
+    @GetMapping("/dayOne/taskTwo")
+    fun dayOneTaskTwo(): String {
+        return Day1.taskTwo()
+    }
 }

@@ -33,5 +33,28 @@ class Day1 {
 
             return result.toString()
         }
+
+        fun taskTwo(): String {
+            var file = FileUtils.readFile("dayOne.txt")
+
+            val left = mutableListOf<Long>()
+            val right = mutableMapOf<Long, Int>()
+
+            file.getContent()
+                .splitRows()
+                .map { it.split("   ") }
+                .filter { it.isNotEmpty() && it.size == 2 }
+                .forEach {
+                    left.add(it[0].toLong())
+
+                    val r = it[1].toLong()
+                    right.putIfAbsent(r, 0)
+                    right[r] = right[r]!! + 1
+                }
+
+            val result = left.map { it * (right[it] ?: 0) }.reduce { subtotal, value -> subtotal + value }
+
+            return result.toString()
+        }
     }
 }
