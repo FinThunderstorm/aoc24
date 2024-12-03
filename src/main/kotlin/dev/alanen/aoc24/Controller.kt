@@ -1,6 +1,7 @@
 package dev.alanen.aoc24
 
 import dev.alanen.aoc24.days.Day1
+import dev.alanen.aoc24.days.DayThree
 import dev.alanen.aoc24.days.DayTwo
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -20,5 +21,10 @@ class Controller {
     @GetMapping("/dayTwo/taskOne")
     fun dayTwoTaskOne(): String {
         return DayTwo.taskOne()
+    }
+
+    @GetMapping("/dayThree/taskOne")
+    fun dayThreeTaskOne(): String {
+        return DayThree.taskOne()
     }
 }
