@@ -23,5 +23,42 @@ class DayTwo {
 
             return rows.toString()
         }
+
+        fun taskTwo(): String {
+            val file = FileUtils.readFile("dayTwo.txt")
+
+            val rows = file
+                .getContent()
+                .splitRows()
+                .map { it.mapRow() }
+                .map { row ->
+                    val fullRowDiff = row.calculateDiff()
+
+                    if (fullRowDiff.isValid()) {
+                        return@map 1
+                    }
+
+                    (0..row.lastIndex).map { idx ->
+                        val clonedRow = row.joinToString(" ").mapRow()
+
+                        return@map clonedRow.subList(0, idx) + clonedRow.subList(idx + 1, clonedRow.size)
+                    }.map { row -> row.calculateDiff() }.forEach { row ->
+                        if (row.isValid()) {
+                            return@map 1
+                        }
+                    }
+
+                    return@map 0
+                }
+                .sum()
+            return rows.toString()
+        }
     }
 }
+
+fun String.mapRow() = this.split(" ").map { value -> value.toInt() }
+fun List<Int>.calculateDiff() = this.mapIndexed { idx, it ->
+    if (idx < this.lastIndex) it - this[idx + 1] else null
+}.filterNotNull()
+
+fun List<Int>.isValid() = this.all { it in -3..-1 } || this.all { it in 1..3 }

@@ -23,6 +23,11 @@ class Controller {
         return DayTwo.taskOne()
     }
 
+    @GetMapping("/dayTwo/taskTwo")
+    fun dayTwoTaskTwo(): String {
+        return DayTwo.taskTwo()
+    }
+
     @GetMapping("/dayThree/taskOne")
     fun dayThreeTaskOne(): String {
         return DayThree.taskOne()
