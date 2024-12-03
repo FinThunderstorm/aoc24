@@ -3,14 +3,10 @@ package dev.alanen.aoc24.days
 import dev.alanen.aoc24.utils.FileUtils
 import dev.alanen.aoc24.utils.getContent
 import dev.alanen.aoc24.utils.splitRows
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import kotlin.math.abs
 
-class Day1 {
+class DayOne {
     companion object {
-        private val logger: Logger = LoggerFactory.getLogger(Day1::class.java)
-
         fun taskOne(): String {
             var file = FileUtils.readFile("dayOne.txt")
 
