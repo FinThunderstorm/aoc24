@@ -7,6 +7,7 @@ class DayThree {
     companion object {
         private val mulRegex = """mul\(\d+,\d+\)""".toRegex()
         private val numRegex = """\d+""".toRegex()
+        private val doRegex = """do\(\)""".toRegex()
 
         fun taskOne(): String {
             var file = FileUtils.readFile("dayThree.txt")
@@ -18,6 +19,23 @@ class DayThree {
                 .map {
                     numRegex.findAll(it.value).map { res -> res.value.toInt() }.reduce { sum, el -> sum * el }
                 }.sum()
+
+            return result.toString()
+        }
+
+        fun taskTwo(): String {
+            var file = FileUtils.readFile("dayThree.txt")
+
+            var result = file.getContent()
+                .replace("\n", "")
+                .split(doRegex)
+                .map { it.substringBefore("don't()") }
+                .flatMap { part ->
+                    mulRegex.findAll(part).map {
+                        numRegex.findAll(it.value).map { res -> res.value.toInt() }.reduce { sum, el -> sum * el }
+                    }
+                }
+                .sum()
 
             return result.toString()
         }
