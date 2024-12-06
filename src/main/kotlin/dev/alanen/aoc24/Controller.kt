@@ -40,4 +40,9 @@ class Controller {
     fun dayFiveTaskOne(): String {
         return DayFive.taskOne()
     }
+
+    @GetMapping("/daySix/taskOne")
+    fun daySixTaskOne(): String {
+        return DaySix.taskOne()
+    }
 }
